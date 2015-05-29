@@ -2,6 +2,8 @@ FROM node:onbuild
 
 WORKDIR /app
 
+RUN npm install mocha express pusher body-parser
+
 ADD . /app
 
 ENV APPID=""
