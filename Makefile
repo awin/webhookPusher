@@ -11,4 +11,4 @@ build:
 dtest:
 	docker run --rm $(tagname) make test
 
-.PHONY: test
+.PHONY: dtest test build
