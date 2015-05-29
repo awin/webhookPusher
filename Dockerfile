@@ -2,7 +2,7 @@ FROM node:latest
 
 WORKDIR /app
 
-RUN npm install mocha express pusher body-parser
+RUN npm install express pusher body-parser mocha blanket
 
 ADD . /app
 

@@ -1,13 +1,6 @@
 console.log(process.env);
-
 var Pusher = require('pusher');
-
-var pusher = new Pusher({
-  appId: process.env.APPID,
-  key: process.env.KEY,
-  secret: process.env.SECRET
-});
-console.log(pusher);
+var travisHandler = require("lib/travisHandler")(Pusher);
 
 var express = require('express');
 var bodyParser  = require('body-parser');
@@ -28,11 +21,11 @@ app.get('/', function(request, response) {
 router.post('/travis', function(req, res) {
     res.header('Content-Type', 'application/json');
     var contents = req.body;
-    var foo = pusher.trigger('travis', 'build', req.body);
+    var foo = travisHandler.handle(contents);
     console.log(foo);
     res.json({
-    	message: 'done',
-    	foo: foo
+        message: 'done',
+        foo: foo
     });
 });
 

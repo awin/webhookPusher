@@ -1,4 +1,10 @@
 {
 	"name":"webhookpusher",
-	"version":"0.0.1"
+	"version":"0.0.1",
+	"config": {
+		"blanket": {
+			"pattern": [""],
+			"data-cover-never": ["node_modules", "test"]
+		}
+	}
 }
