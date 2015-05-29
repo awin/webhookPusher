@@ -9,6 +9,6 @@ build:
 	docker build -t $(tagname):latest .
 
 dtest:
-	docker run --rm -it $(tagname) make test
+	docker run --rm $(tagname) make test
 
 .PHONY: test
