@@ -1,22 +1,45 @@
 var assert = require('assert');
 require('blanket');
 
-describe("Pusher", function() {
-    describe("Handler", function() {
-        it("handles a request", function() {
-            var content = ""
-            var MockPusher = function() {
+describe("Integration", function() {
+    describe("Travis Webhook", function() {
+        var expressMock = function() {
+            return {
+                use: function() {},
+                get: function() {},
+                listen: function() {}
+            }
+        };
+        var router = {
+            post: function() {}
+        };
+        expressMock.Router = function() {
+            return router;
+        };
+
+        var resMock = {
+            header: function() {},
+            json: function() {}
+        };
+
+        it("Attaching handler works", function(done) {
+            var handlerMock = {
+                handle: function() {
+                    done();
+                }
+            }
+
+            expressMock.Router = function() {
                 return {
-                    trigger: function(channel, event, body) {
-                        assert.equal(channel, "travis");
-                        assert.equal(event, "build");
-                        assert.equal(body, content);
+                    post: function(endpoint, handlerFunction) {
+                        assert.equal(endpoint, "foo");
+                        handlerFunction({body:""}, resMock);
                     }
                 }
-            };
-            var handler = require("../lib/travisHandler")(MockPusher);
+            }
 
-            handler.handle(content);
+            var server = require("../lib/server")(expressMock);
+            server.attachHandler("foo", handlerMock);
         });
     });
 });
