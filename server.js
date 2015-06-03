@@ -10,3 +10,7 @@ var server = require("./lib/server.js")(express);
 server.attachHandler('/travis', travisHandler);
 server.listen(PORT);
 console.log('Webhook Server started... port: ' + PORT);
+
+var healthserver = require("./lib/healthserver.js")(express);
+healthserver.listen(8080);
+console.log('Health Check Server started... port: 8080');
