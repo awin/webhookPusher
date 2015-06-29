@@ -14,7 +14,3 @@ console.log('Webhook Server started... port: ' + PORT);
 var healthserver = require("./lib/healthserver.js")(express);
 healthserver.listen(8080);
 console.log('Health Check Server started... port: 8080');
-
-var statusServer = require("./lib/statusserver.js")(express);
-statusServer.listen(80);
-console.log("Status.txt server started... port: 80");

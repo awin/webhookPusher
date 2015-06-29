@@ -18,4 +18,4 @@ curl --data-binary "foo=1" http://10.161.1.26:5000/webhook/travis
 
 Run with:
 
-docker run -d --name whp -e APPID=xxx -e SECRET=xxx -e KEY=xxx -p 5000:5000 -p 8080:8080 -p 80:80 yarekt/webhookpusher
+docker run -d --name whp -e APPID=xxx -e SECRET=xxx -e KEY=xxx -p 5000:5000 -p 8080:8080 yarekt/webhookpusher
